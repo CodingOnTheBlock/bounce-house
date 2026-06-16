@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bounce House Rental — Primary Source Consulting</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f0f2f7;
+    color: #1a2233;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: #1a3a8f;
+    padding: 48px 24px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-stripe {
+    position: absolute; top: 0; left: 0; right: 0; height: 8px;
+    background: repeating-linear-gradient(90deg,
+      #e8a020 0 50px, #c0392b 50px 100px, #e8a020 100px 150px);
+  }
+  .hero-bottom-stripe {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 8px;
+    background: repeating-linear-gradient(90deg,
+      #c0392b 0 50px, #e8a020 50px 100px, #c0392b 100px 150px);
+  }
+  .logo-ring {
+    width: 80px; height: 80px; border-radius: 50%;
+    background: #e8a020;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 16px;
+    font-size: 26px; font-weight: 700; color: #1a3a8f;
+    border: 3px solid rgba(255,255,255,0.3);
+  }
+  .hero h1 {
+    font-size: 32px; font-weight: 700; color: #ffffff;
+    margin-bottom: 8px; letter-spacing: -0.5px;
+  }
+  .hero h1 span { color: #e8a020; }
+  .hero .tagline {
+    font-size: 16px; color: #a8bfdf; margin-bottom: 20px;
+  }
+  .hero-badges {
+    display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;
+  }
+  .hero-badge {
+    background: rgba(255,255,255,0.12);
+    color: #f0d898;
+    font-size: 13px; font-weight: 500;
+    padding: 6px 16px; border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 32px 20px 60px; }
+
+  .section-title {
+    font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
+    color: #e8a020; font-weight: 600; margin-bottom: 6px;
+  }
+  h2 {
+    font-size: 22px; font-weight: 600; color: #1a3a8f;
+    border-bottom: 3px solid #e8a020;
+    padding-bottom: 8px; margin-bottom: 20px;
+  }
+  section { margin-bottom: 40px; }
+
+  /* ── FEATURE CARDS ── */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px; margin-bottom: 0;
+  }
+  .feature-card {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 20px 16px;
+    border-top: 4px solid #e8a020;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  }
+  .feature-card .icon {
+    font-size: 28px; margin-bottom: 10px; display: block;
+  }
+  .feature-card h3 {
+    font-size: 15px; font-weight: 600; color: #1a3a8f; margin-bottom: 4px;
+  }
+  .feature-card p {
+    font-size: 13px; color: #5c6778; line-height: 1.5;
+  }
+
+  /* ── PRICING ── */
+  .pricing-card {
+    background: #ffffff; border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    overflow: hidden;
+  }
+  .pricing-header {
+    background: #1a3a8f; color: #ffffff;
+    padding: 18px 24px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .pricing-header h2 {
+    color: #ffffff; border: none; padding: 0; margin: 0; font-size: 20px;
+  }
+  .pricing-body { padding: 0 24px 24px; }
+  .price-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid #eef0f5;
+    font-size: 15px;
+  }
+  .price-row:last-child { border-bottom: none; }
+  .price-row .desc { color: #5c6778; }
+  .price-row .amount { font-weight: 700; color: #1a3a8f; }
+  .price-row .amount.big { font-size: 28px; color: #c0392b; }
+  .price-row .amount.green { color: #1a7a3a; }
+  .deposit-note {
+    background: #fdf0d5; border-left: 4px solid #e8a020;
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px; font-size: 13px; color: #7a5010;
+    margin-top: 16px; line-height: 1.5;
+  }
+
+  /* ── UNIT SPECS ── */
+  .specs-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  }
+  @media (max-width: 480px) { .specs-grid { grid-template-columns: 1fr; } }
+  .spec-item {
+    background: #ffffff; border-radius: 8px; padding: 14px 16px;
+    display: flex; gap: 12px; align-items: flex-start;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .spec-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: #e8a020; flex-shrink: 0; margin-top: 6px;
+  }
+  .spec-item .spec-label { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; }
+  .spec-item .spec-val { font-size: 15px; font-weight: 600; color: #1a2233; }
+
+  /* ── SAFETY RULES ── */
+  .rules-list { list-style: none; }
+  .rules-list li {
+    display: flex; gap: 14px; align-items: flex-start;
+    background: #ffffff; border-radius: 8px; padding: 14px 16px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    font-size: 14px; color: #3a4560; line-height: 1.5;
+  }
+  .rule-num {
+    min-width: 26px; height: 26px; border-radius: 50%;
+    background: #c0392b; color: #fff;
+    font-size: 12px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 1px;
+  }
+
+  /* ── TERMS ── */
+  .terms-box {
+    background: #ffffff; border-radius: 10px; padding: 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    font-size: 14px; color: #3a4560; line-height: 1.7;
+  }
+  .terms-box h3 {
+    font-size: 14px; font-weight: 700; color: #1a3a8f;
+    margin: 16px 0 4px; text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .terms-box h3:first-child { margin-top: 0; }
+
+  /* ── BOOKING FORM ── */
+  .form-card {
+    background: #ffffff; border-radius: 10px;
+    border: 3px solid #1a3a8f;
+    box-shadow: 0 4px 16px rgba(26,58,143,0.12);
+    overflow: hidden;
+  }
+  .form-header {
+    background: #1a3a8f; padding: 20px 24px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .form-header h2 { color: #ffffff; border: none; padding: 0; margin: 0; font-size: 20px; }
+  .form-header p { color: #a8bfdf; font-size: 13px; margin-top: 2px; }
+  .form-body { padding: 24px; }
+
+  .form-section-label {
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: #e8a020; font-weight: 700; margin: 20px 0 12px;
+    padding-bottom: 6px; border-bottom: 1px solid #eef0f5;
+  }
+  .form-section-label:first-child { margin-top: 0; }
+
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 540px) { .field-row { grid-template-columns: 1fr; } }
+
+  .field { margin-bottom: 14px; }
+  .field label {
+    display: block; font-size: 13px; font-weight: 600;
+    color: #3a4560; margin-bottom: 6px;
+  }
+  .field label .req { color: #c0392b; margin-left: 2px; }
+  .field input, .field select, .field textarea {
+    width: 100%; padding: 10px 14px;
+    border: 1.5px solid #dde2ea; border-radius: 7px;
+    font-size: 14px; color: #1a2233;
+    background: #f8f9fc;
+    outline: none; transition: border-color 0.15s;
+    font-family: inherit;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    border-color: #1a3a8f; background: #ffffff;
+  }
+  .field textarea { height: 90px; resize: vertical; }
+  .field select { cursor: pointer; }
+
+  .agree-row {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: #f0f4ff; border-radius: 8px; padding: 14px 16px;
+    margin-top: 6px;
+  }
+  .agree-row input[type="checkbox"] {
+    width: 18px; height: 18px; flex-shrink: 0;
+    margin-top: 2px; cursor: pointer; accent-color: #1a3a8f;
+  }
+  .agree-row label {
+    font-size: 13px; color: #3a4560; line-height: 1.5; cursor: pointer;
+  }
+
+  .submit-btn {
+    width: 100%; padding: 16px;
+    background: #c0392b; color: #ffffff;
+    border: none; border-radius: 8px;
+    font-size: 17px; font-weight: 700;
+    cursor: pointer; margin-top: 20px;
+    letter-spacing: 0.3px;
+    transition: background 0.15s, transform 0.1s;
+  }
+  .submit-btn:hover { background: #a02d22; }
+  .submit-btn:active { transform: scale(0.99); }
+  .submit-note {
+    text-align: center; font-size: 12px; color: #888;
+    margin-top: 10px;
+  }
+
+  /* ── CONTACT FOOTER ── */
+  .contact-bar {
+    background: #1a3a8f; border-radius: 10px;
+    padding: 20px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px;
+  }
+  .contact-bar .left { color: #a8bfdf; font-size: 14px; }
+  .contact-bar .left strong { color: #ffffff; display: block; font-size: 16px; margin-bottom: 2px; }
+  .contact-bar .email {
+    color: #e8a020; font-weight: 600; font-size: 15px;
+    text-decoration: none;
+  }
+  .contact-bar .email:hover { text-decoration: underline; }
+
+  footer {
+    text-align: center; padding: 24px;
+    font-size: 12px; color: #888;
+    background: #1a2233; color: #5c7090; margin-top: 0;
+  }
+  footer span { color: #e8a020; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-stripe"></div>
+  <div class="logo-ring">PSC</div>
+  <h1>Bounce House Rentals<br><span>Primary Source Consulting</span></h1>
+  <p class="tagline">Merrillville, IN &amp; Northwest Indiana — Commercial-Grade Fun Delivered to You</p>
+  <div class="hero-badges">
+    <span class="hero-badge">📍 15-Mile Delivery Radius</span>
+    <span class="hero-badge">✅ Sanitized Before Every Rental</span>
+    <span class="hero-badge">👨‍👩‍👧 Up to 10 Kids at Once</span>
+    <span class="hero-badge">🏰 Magic Combo 15 — Bounce + Dual Slide</span>
+  </div>
+  <div class="hero-bottom-stripe"></div>
+</div>
+
+<div class="container">
+
+  <!-- WHAT YOU GET -->
+  <section>
+    <div class="section-title">The Unit</div>
+    <h2>Magic Combo 15 — Bounce + Dual Slide</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <span class="icon">🏰</span>
+        <h3>Castle Combo</h3>
+        <p>Commercial-grade vinyl castle theme with 15×15 bounce floor and dual racing slide — kids bounce AND slide.</p>
+      </div>
+      <div class="feature-card">
+        <span class="icon">🕐</span>
+        <h3>Full Overnight</h3>
+        <p>Drop-off Saturday at 9am. Pickup Sunday at 6pm. Your party gets the whole weekend.</p>
+      </div>
+      <div class="feature-card">
+        <span class="icon">🔌</span>
+        <h3>Easy Setup</h3>
+        <p>Needs flat grass or pavement and one standard outlet within 50 ft on a dedicated circuit.</p>
+      </div>
+      <div class="feature-card">
+        <span class="icon">🚚</span>
+        <h3>We Deliver</h3>
+        <p>Free delivery within 15 miles of Merrillville. Call for a quote beyond 15 miles.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- UNIT SPECS -->
+  <section>
+    <div class="section-title">Specifications</div>
+    <h2>Unit Details</h2>
+    <div class="specs-grid">
+      <div class="spec-item">
+        <div class="spec-dot"></div>
+        <div><div class="spec-label">Overall footprint</div><div class="spec-val">21.5 ft deep × 15.1 ft wide × 11.4 ft high</div></div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-dot"></div>
+        <div><div class="spec-label">Bounce floor</div><div class="spec-val">15 ft × 15 ft</div></div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-dot"></div>
+        <div><div class="spec-label">Max players at once</div><div class="spec-val">10 children</div></div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-dot"></div>
+        <div><div class="spec-label">Max user weight</div><div class="spec-val">200 lbs per user</div></div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-dot"></div>
+        <div><div class="spec-label">Slide</div><div class="spec-val">Dual racing slide — 9.1 ft wide</div></div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-dot"></div>
+        <div><div class="spec-label">Material</div><div class="spec-val">Heavy-duty commercial vinyl, safety netting</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section>
+    <div class="section-title">Pricing</div>
+    <div class="pricing-card">
+      <div class="pricing-header">
+        <div>
+          <h2>Rental Rates</h2>
+          <p>All-inclusive — delivery, setup, and pickup included within 15 miles</p>
+        </div>
+      </div>
+      <div class="pricing-body">
+        <div class="price-row">
+          <span class="desc">1-Day Rental (Saturday 9am – Sunday 6pm)</span>
+          <span class="amount big">$250</span>
+        </div>
+        <div class="price-row">
+          <span class="desc">Deposit required to reserve your date</span>
+          <span class="amount">$150</span>
+        </div>
+        <div class="price-row">
+          <span class="desc">Balance due at delivery</span>
+          <span class="amount">$100</span>
+        </div>
+        <div class="price-row">
+          <span class="desc">Delivery &amp; setup (within 15 miles)</span>
+          <span class="amount green">Included</span>
+        </div>
+        <div class="price-row">
+          <span class="desc">Delivery beyond 15 miles</span>
+          <span class="amount">Call for quote</span>
+        </div>
+        <div class="deposit-note">
+          💳 <strong>How to book:</strong> Submit the form below. We'll confirm availability and send your $150 deposit invoice via PayPal within 24 hours. Your date is not reserved until the deposit is paid.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAFETY RULES -->
+  <section>
+    <div class="section-title">Safety</div>
+    <h2>Safety Rules &amp; Regulations</h2>
+    <ul class="rules-list">
+      <li><div class="rule-num">1</div><span>Adult supervision is required at ALL times when children are in or around the unit.</span></li>
+      <li><div class="rule-num">2</div><span>Children must remove shoes before entering. No flips, roughhousing, or stunts.</span></li>
+      <li><div class="rule-num">3</div><span>Keep the number of children at or below 10 at any time.</span></li>
+      <li><div class="rule-num">4</div><span>Absolutely NO gum, food, drinks, candy, or silly string inside the unit. Violation may result in additional cleaning charges.</span></li>
+      <li><div class="rule-num">5</div><span>Keep smaller children separate from older jumpers — allow a dedicated time for little ones.</span></li>
+      <li><div class="rule-num">6</div><span>Do not move the unit from its setup location for any reason.</span></li>
+      <li><div class="rule-num">7</div><span>Do not use the unit near water or when fireworks are in use or nearby.</span></li>
+      <li><div class="rule-num">8</div><span>Have FUN! 🎉</span></li>
+    </ul>
+  </section>
+
+  <!-- TERMS -->
+  <section>
+    <div class="section-title">Policies</div>
+    <h2>Terms &amp; Conditions</h2>
+    <div class="terms-box">
+      <h3>Reservations &amp; Deposits</h3>
+      A non-refundable $150 deposit is required to secure your rental date. Your date is not confirmed until the deposit is received. The remaining balance of $100 is due upon delivery. Failure to pay the balance at delivery will result in the unit not being set up.
+
+      <h3>Cancellations</h3>
+      Deposits are non-refundable. If you cancel 6 or more days before your event, your deposit may be applied toward a future rental date within one calendar year. Cancellations within 5 days of the event forfeit the deposit entirely.
+
+      <h3>Weather Policy</h3>
+      Weather cancellations must be made by 7am the morning of your scheduled delivery. We do not deliver if wind speeds are 15 mph or greater, or if there is a 30% or greater chance of rain. If the unit has already been delivered, the customer is responsible for full payment regardless of weather. Temperatures above 100°F may result in cancellation at our discretion.
+
+      <h3>Setup Requirements</h3>
+      We do not set up on rock, gravel, or uneven surfaces. A standard electrical outlet must be within 50 feet of the setup location on a dedicated circuit. If you are at a park without electricity, you must provide a generator. Customer is responsible for clearing the setup area of debris, pet waste, and sprinkler heads before arrival.
+
+      <h3>Liability &amp; Damage</h3>
+      By submitting a booking request and paying a deposit, the customer agrees that Primary Source Consulting is released from liability for any injury or damages resulting from use of the bounce house. The customer is responsible for any damage to the unit beyond normal wear and tear, including damage caused by silly string, food, drinks, or well water.
+
+      <h3>Delivery &amp; Pickup</h3>
+      Standard delivery is Saturday at 9am. Standard pickup is Sunday at 6pm. Customer must be present at both delivery and pickup. If no one is available at delivery, a $50 redelivery fee applies.
+    </div>
+  </section>
+
+  <!-- BOOKING FORM -->
+  <section>
+    <div class="form-card">
+      <div class="form-header">
+        <div>
+          <h2>📋 Request a Booking</h2>
+          <p>We'll confirm availability and send your deposit invoice within 24 hours.</p>
+        </div>
+      </div>
+      <div class="form-body">
+
+        <div class="form-section-label">Your Information</div>
+        <div class="field-row">
+          <div class="field">
+            <label>First Name <span class="req">*</span></label>
+            <input type="text" placeholder="First name">
+          </div>
+          <div class="field">
+            <label>Last Name <span class="req">*</span></label>
+            <input type="text" placeholder="Last name">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Phone Number <span class="req">*</span></label>
+            <input type="tel" placeholder="(219) 555-0100">
+          </div>
+          <div class="field">
+            <label>Email Address <span class="req">*</span></label>
+            <input type="email" placeholder="you@email.com">
+          </div>
+        </div>
+
+        <div class="form-section-label">Event Details</div>
+        <div class="field-row">
+          <div class="field">
+            <label>Requested Rental Date <span class="req">*</span></label>
+            <input type="date">
+          </div>
+          <div class="field">
+            <label>City &amp; Zip Code <span class="req">*</span></label>
+            <input type="text" placeholder="Merrillville, 46410">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Event Type <span class="req">*</span></label>
+            <select>
+              <option value="">Select one...</option>
+              <option>Birthday party</option>
+              <option>Church / community event</option>
+              <option>School / PTA event</option>
+              <option>HOA / neighborhood event</option>
+              <option>Corporate / company event</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Expected Number of Children <span class="req">*</span></label>
+            <input type="number" placeholder="e.g. 15" min="1">
+          </div>
+        </div>
+
+        <div class="form-section-label">Setup Information</div>
+        <div class="field-row">
+          <div class="field">
+            <label>Setup Surface <span class="req">*</span></label>
+            <select>
+              <option value="">Select one...</option>
+              <option>Grass</option>
+              <option>Pavement / driveway</option>
+              <option>Indoor</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Outlet within 50 ft of setup area? <span class="req">*</span></label>
+            <select>
+              <option value="">Select one...</option>
+              <option>Yes</option>
+              <option>No — I will provide a generator</option>
+              <option>Not sure</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label>Gate codes, parking notes, or access details</label>
+          <textarea placeholder="e.g. Side gate, code is 1234. Park on the street. Backyard has a dog — will be put away."></textarea>
+        </div>
+
+        <div class="form-section-label">Agreement</div>
+        <div class="agree-row">
+          <input type="checkbox" id="agree1">
+          <label for="agree1">I have read and agree to the safety rules, terms, and cancellation policy of Primary Source Consulting. I understand the $150 deposit is non-refundable and required to confirm my date.</label>
+        </div>
+        <div class="field" style="margin-top:14px;">
+          <label>Type your full name as your digital signature <span class="req">*</span></label>
+          <input type="text" placeholder="Full legal name">
+        </div>
+
+        <button class="submit-btn">🎉 Submit My Booking Request</button>
+        <p class="submit-note">We'll respond within 24 hours with availability confirmation and your PayPal deposit link.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <div class="contact-bar">
+    <div class="left">
+      <strong>Primary Source Consulting</strong>
+      Questions? We respond same day.
+    </div>
+    <a href="mailto:wendell9467@gmail.com" class="email">📧 wendell9467@gmail.com</a>
+  </div>
+
+</div>
+
+<footer>
+  &copy; 2026 <span>Primary Source Consulting</span> &nbsp;·&nbsp; Merrillville, IN 46410 &nbsp;·&nbsp; Bounce House Rentals
+</footer>
+
+</body>
+</html>
